@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"net/http/httputil"
 	"os"
 	"sync/atomic"
 )
@@ -69,6 +70,11 @@ func main() {
 	case "", "simple":
 		incHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			counter.Inc()
+		})
+	case "dump":
+		incHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			data, _ := httputil.DumpRequest(r, true)
+			w.Write(data)
 		})
 	default:
 		log.Fatalf("Invalid mode %q", mode)
