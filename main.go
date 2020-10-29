@@ -61,10 +61,14 @@ func main() {
 			buf := make([]byte, 1024)
 			for {
 				n, err := r.Body.Read(buf)
-				if err != io.EOF || n == 0 {
+				if err != nil && err != io.EOF {
+					log.Printf("Got error reading input: %v", err)
 					break
 				}
 				counter.Add(uint64(bytes.Count(buf[:n], []byte("\n"))))
+				if err == io.EOF {
+					break
+				}
 			}
 		})
 	case "", "simple":
