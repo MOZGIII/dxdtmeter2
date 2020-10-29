@@ -73,6 +73,7 @@ func main() {
 	default:
 		log.Fatalf("Invalid mode %q", mode)
 	}
+	log.Printf("Mode: %s", mode)
 
 	controlHandler := http.NewServeMux()
 	controlHandler.HandleFunc("/reset", func(w http.ResponseWriter, r *http.Request) {
