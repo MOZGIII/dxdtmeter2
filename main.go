@@ -71,7 +71,7 @@ func main() {
 		incHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			counter.Inc()
 		})
-	case "dump":
+	case "echo":
 		incHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			data, _ := httputil.DumpRequest(r, true)
 			w.Write(data)
