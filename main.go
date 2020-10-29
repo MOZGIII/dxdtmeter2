@@ -76,6 +76,11 @@ func main() {
 			data, _ := httputil.DumpRequest(r, true)
 			w.Write(data)
 		})
+	case "dump":
+		incHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			data, _ := httputil.DumpRequest(r, true)
+			log.Printf("Got request\n%s", string(data))
+		})
 	default:
 		log.Fatalf("Invalid mode %q", mode)
 	}
