@@ -2,7 +2,7 @@ FROM golang:1.15 AS builder
 
 WORKDIR /build
 COPY main.go .
-RUN go build -o app main.go
+RUN CGO_ENABLED=0 go build -o app main.go
 
 FROM scratch
 
