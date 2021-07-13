@@ -1,4 +1,4 @@
-FROM golang:1.16.1 AS builder
+FROM golang:1.17beta1 AS builder
 
 WORKDIR /build
 COPY main.go .
